@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table</title>
+</head>
+<body>
+    <h1>Table view</h1>
+    <form action="search" method="post">
+        {% csrf_token %}
+        <input type="text" name="sear">
+        <input type="submit" value="search">
+    </form>
+    <table border="2">
+        <tr>
+            <th>firstname</th>
+            <th>secondname</th>
+            <th>class</th>
+            <th>division</th>
+        </tr>
+
+        {% for i in pin %}
+        <tr>
+            <td>{{i.fnames}}</td>
+            <td>{{i.snames}}</td>
+            <td>{{i.classes}}</td>
+            <td>{{i.divi}}</td>
+            <td><a href="{% url 'viewbtn1' i.id %}"><button>view</button></a></td>
+            <td><a href="{% url 'updatebtn' i.id %}"><button>update</button></a></td>
+            <td><a href="{% url 'deletebtn' i.id %}"><button>delete</button></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
